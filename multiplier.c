@@ -6,7 +6,6 @@ void printBinary(unsigned int number, int bits) {
     }
 }
 
-
 int main() {
     unsigned int multiplicand, multiplier;
     unsigned int product = 0;
@@ -25,17 +24,35 @@ int main() {
     unsigned int originalA = multiplicand;
     unsigned int originalB = multiplier;
 
+    printf("\n--- Shift-and-Add Multiplication ---\n");
+
     for (int i = 0; i < 8; i++) {
 
+        printf("\nStep %d\n", i + 1);
+
+        printf("Multiplicand : ");
+        printBinary(multiplicand, 16);
+
+        printf("\nMultiplier   : ");
+        printBinary(multiplier, 8);
+
         if (multiplier & 1) {
+            printf("\nLSB = 1 -> Add multiplicand");
             product = product + multiplicand;
+        } else {
+            printf("\nLSB = 0 -> No addition");
         }
 
-        multiplicand = multiplicand << 1;
+        printf("\nProduct      : ");
+        printBinary(product, 16);
+
         multiplier = multiplier >> 1;
+        multiplicand = multiplicand << 1;
     }
 
-    printf("\nFirst number  : ");
+    printf("\n\n--- Final Result ---\n");
+
+    printf("First number  : ");
     printBinary(originalA, 8);
 
     printf("\nSecond number : ");
@@ -44,7 +61,7 @@ int main() {
     printf("\nProduct       : ");
     printBinary(product, 16);
 
-    printf("\n\nDecimal Product = %u\n", product);
+    printf("\nDecimal Product = %u\n", product);
 
     return 0;
 }
