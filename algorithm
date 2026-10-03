@@ -1,0 +1,80 @@
+# Shift-and-Add Multiplication Algorithm
+
+## Objective
+
+To multiply two 8-bit unsigned binary numbers using the **shift-and-add multiplication method**.
+
+## Algorithm
+
+1. Start the program.
+
+2. Read two 8-bit unsigned numbers:
+
+   * Multiplicand (A)
+   * Multiplier (B)
+
+3. Check whether both input values are between **0 and 255**.
+
+   * If either value is greater than 255, display an error message and terminate the program.
+
+4. Initialize the **Product register** to 0.
+
+5. Repeat the following steps for **8 iterations**:
+
+   a. Check the **Least Significant Bit (LSB)** of the Multiplier.
+
+   b. If the LSB is `1`, add the current Multiplicand to the Product.
+
+   c. If the LSB is `0`, do not add the Multiplicand.
+
+   d. Shift the Multiplicand **one bit to the left**.
+
+   e. Shift the Multiplier **one bit to the right**.
+
+6. After 8 iterations, the Product register contains the final multiplication result.
+
+7. Display the original inputs and the final product in binary and decimal form.
+
+8. Stop the program.
+
+## Pseudocode
+
+```text
+START
+
+Read A
+Read B
+
+IF A > 255 OR B > 255
+    Display "Invalid input"
+    STOP
+END IF
+
+Product = 0
+
+REPEAT 8 times
+
+    IF (B AND 1) = 1
+        Product = Product + A
+    END IF
+
+    A = A << 1
+    B = B >> 1
+
+END REPEAT
+
+Display Product
+
+STOP
+```
+
+## Working Principle
+
+The algorithm examines each bit of the multiplier from right to left.
+
+* If the current multiplier bit is `1`, the corresponding shifted value of the multiplicand is added to the Product.
+* If the current multiplier bit is `0`, no addition is performed.
+* The Multiplicand is shifted left after every iteration.
+* The Multiplier is shifted right after every iteration.
+
+This is similar to the binary multiplication process performed using registers and an ALU in a computer system.
