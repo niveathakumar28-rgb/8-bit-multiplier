@@ -1,18 +1,26 @@
 #include <stdio.h>
 
 int main() {
-    int a, b;
-    int result;
+    unsigned int multiplicand, multiplier;
+    unsigned int product = 0;
 
     printf("Enter first 8-bit number: ");
-    scanf("%d", &a);
+    scanf("%u", &multiplicand);
 
     printf("Enter second 8-bit number: ");
-    scanf("%d", &b);
+    scanf("%u", &multiplier);
 
-    result = a * b;
+    for (int i = 0; i < 8; i++) {
 
-    printf("Product = %d\n", result);
+        if (multiplier & 1) {
+            product = product + multiplicand;
+        }
+
+        multiplicand = multiplicand << 1;
+        multiplier = multiplier >> 1;
+    }
+
+    printf("Product = %u\n", product);
 
     return 0;
 }
