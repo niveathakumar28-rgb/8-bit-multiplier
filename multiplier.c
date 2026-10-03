@@ -24,11 +24,28 @@ int main() {
     unsigned int originalA = multiplicand;
     unsigned int originalB = multiplier;
 
-    printf("\n--- Shift-and-Add Multiplication ---\n");
+    printf("\n====================================\n");
+    printf("       8-BIT BINARY MULTIPLIER\n");
+    printf("====================================\n");
+
+    printf("\nInitial Values:\n");
+
+    printf("Multiplicand Register : ");
+    printBinary(multiplicand, 16);
+
+    printf("\nMultiplier Register   : ");
+    printBinary(multiplier, 8);
+
+    printf("\nProduct Register      : ");
+    printBinary(product, 16);
+
+    printf("\n\n--- REGISTER OPERATIONS ---\n");
 
     for (int i = 0; i < 8; i++) {
 
-        printf("\nStep %d\n", i + 1);
+        printf("\nIteration %d\n", i + 1);
+
+        printf("----------------------------\n");
 
         printf("Multiplicand : ");
         printBinary(multiplicand, 16);
@@ -36,29 +53,46 @@ int main() {
         printf("\nMultiplier   : ");
         printBinary(multiplier, 8);
 
+        printf("\nProduct      : ");
+        printBinary(product, 16);
+
+        printf("\nMultiplier LSB = %d\n", multiplier & 1);
+
         if (multiplier & 1) {
-            printf("\nLSB = 1 -> Add multiplicand");
             product = product + multiplicand;
+            printf("Operation    : ADD\n");
         } else {
-            printf("\nLSB = 0 -> No addition");
+            printf("Operation    : NO ADDITION\n");
         }
+
+        multiplicand = multiplicand << 1;
+        multiplier = multiplier >> 1;
+
+        printf("After shift:\n");
+
+        printf("Multiplicand : ");
+        printBinary(multiplicand, 16);
+
+        printf("\nMultiplier   : ");
+        printBinary(multiplier, 8);
 
         printf("\nProduct      : ");
         printBinary(product, 16);
 
-        multiplier = multiplier >> 1;
-        multiplicand = multiplicand << 1;
+        printf("\n");
     }
 
-    printf("\n\n--- Final Result ---\n");
+    printf("\n====================================\n");
+    printf("           FINAL RESULT\n");
+    printf("====================================\n");
 
-    printf("First number  : ");
+    printf("Input A : ");
     printBinary(originalA, 8);
 
-    printf("\nSecond number : ");
+    printf("\nInput B : ");
     printBinary(originalB, 8);
 
-    printf("\nProduct       : ");
+    printf("\nProduct : ");
     printBinary(product, 16);
 
     printf("\nDecimal Product = %u\n", product);
