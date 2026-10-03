@@ -6,6 +6,7 @@ void printBinary(unsigned int number, int bits) {
     }
 }
 
+
 int main() {
     unsigned int multiplicand, multiplier;
     unsigned int product = 0;
